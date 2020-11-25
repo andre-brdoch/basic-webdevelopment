@@ -1,0 +1,246 @@
+<html>
+  <head>
+    <title>Friework App</title>
+    <style>
+      /* This is CSS! */
+
+      /*
+      Colors:
+      blue: #46A8FF
+      purple: #B68EFF
+      gray: #3f4450
+      gray-light: #e0e0e0
+      turkis: #4DCDC0
+      */
+
+      /* remove some annoying default browser styles */
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        padding: 10px;
+      }
+      p,
+      h2 {
+        font-family: "Arial";
+        color: #3f4450;
+        line-height: 1.6;
+      }
+      h2 {
+        font-size: 30px;
+        margin-bottom: 10px;
+      }
+
+      /* Cards: */
+      .card {
+        background: #46a8ff;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 5px;
+        cursor: pointer;
+      }
+      .card-important {
+        background: #b68eff;
+      }
+      .card-text {
+        color: white;
+        font-size: 16px;
+        margin-bottom: 5px;
+      }
+      .card-heading {
+        font-weight: bold;
+        font-size: 18px;
+      }
+
+      /* Calendar Grid: */
+      .calendar-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #e0e0e0;
+      }
+      .calendar-entry {
+        text-align: center;
+      }
+      .calendar-weekday {
+        font-size: 12px;
+        margin-bottom: 5px;
+      }
+      .calendar-circle {
+        border: 1px solid #e0e0e0;
+        border-radius: 9999px;
+        width: 28px;
+        height: 28px;
+        display: inline-grid;
+        align-items: center;
+      }
+      .calendar-day {
+        font-size: 16px;
+      }
+      .calendar-circle.active {
+        background: #4dcdc0;
+        border-color: #4dcdc0;
+      }
+      .calendar-circle.active .calendar-day {
+        color: white;
+      }
+
+      /* add-card button: */
+      .add-button {
+        background: #4dcdc0;
+        color: white;
+        font-size: 25px;
+        border-radius: 9999px;
+        width: 40px;
+        height: 40px;
+        display: grid;
+        align-items: center;
+        text-align: center;
+        margin-top: 40px;
+        margin-left: auto;
+        cursor: pointer;
+      }
+
+      /* tablet: */
+      @media (min-width: 800px) {
+        body {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          grid-gap: 40px;
+        }
+      }
+
+      /* No more CSS! */
+    </style>
+  </head>
+
+  <body>
+    <div class="schedule">
+      <!-- calendar: -->
+      <div class="calendar-grid">
+        <div class="calendar-entry">
+          <p class="calendar-weekday">Sun</p>
+          <div class="calendar-circle">
+            <p class="calendar-day">22</p>
+          </div>
+        </div>
+        <div class="calendar-entry">
+          <p class="calendar-weekday">Mon</p>
+          <div class="calendar-circle">
+            <p class="calendar-day">23</p>
+          </div>
+        </div>
+        <div class="calendar-entry">
+          <p class="calendar-weekday">Tue</p>
+          <div class="calendar-circle">
+            <p class="calendar-day">24</p>
+          </div>
+        </div>
+        <div class="calendar-entry">
+          <p class="calendar-weekday">Wed</p>
+          <div class="calendar-circle">
+            <p class="calendar-day">25</p>
+          </div>
+        </div>
+        <div class="calendar-entry">
+          <p class="calendar-weekday">Thu</p>
+          <div class="calendar-circle active">
+            <p class="calendar-day">26</p>
+          </div>
+        </div>
+        <div class="calendar-entry">
+          <p class="calendar-weekday">Fri</p>
+          <div class="calendar-circle">
+            <p class="calendar-day">27</p>
+          </div>
+        </div>
+        <div class="calendar-entry">
+          <p class="calendar-weekday">Sat</p>
+          <div class="calendar-circle">
+            <p class="calendar-day">28</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- daily tasks: -->
+      <div id="card-container">
+        <div class="card" onclick="deleteCard(this)">
+          <p class="card-heading card-text">
+            Meeting Friework.io
+          </p>
+          <p class="card-text">Friework.com</p>
+          <p class="card-text">2h 0min</p>
+        </div>
+
+        <div class="card" onclick="deleteCard(this)">
+          <p class="card-heading card-text">
+            Design Meeting
+          </p>
+          <p class="card-text">8h 13min</p>
+        </div>
+
+        <!-- purple card: -->
+        <div class="card card-important" onclick="deleteCard(this)">
+          <p class="card-heading card-text">
+            Lunch
+          </p>
+          <p class="card-text">1h 0min</p>
+        </div>
+      </div>
+
+      <!-- add card button: -->
+      <div class="add-button" onclick="addCard()">
+        +
+      </div>
+    </div>
+
+    <!-- support section -->
+    <div class="support">
+      <h2>Need help?</h2>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum.
+      </p>
+    </div>
+
+    <script>
+      // Here goes Javascript!
+
+      function deleteCard(card) {
+        card.remove();
+      }
+
+      function addCard() {
+        // create a new card
+        const newCard = document.createElement("div");
+        newCard.classList.add("card");
+
+        // create card text
+        const cardTitle = document.createElement("p");
+        cardTitle.classList.add("card-text");
+        cardTitle.innerHTML =
+          "To edit this task, please contact customer support";
+
+        // add text to card
+        newCard.appendChild(cardTitle);
+
+        // make card deletable
+        newCard.addEventListener("click", function() {
+          deleteCard(this);
+        });
+
+        // add new card to page:
+        const cardContainer = document.getElementById("card-container");
+        cardContainer.appendChild(newCard);
+      }
+    </script>
+  </body>
+</html>
